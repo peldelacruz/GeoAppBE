@@ -10,6 +10,6 @@ urlpatterns = [
     path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('token/validate/', views.TokenValidate.as_view(), name='token_validate'),
-    path('authenticate_user/<token>/', authenticate_user, name='authenticate_user'),
+    path('authenticate_user/<token>/', authenticate_user, name='authenticate_users'),
     path('ApiUserRegister/<company>/<username>/', ApiUserRegister, name='ApiUserRegister'),
  ]
