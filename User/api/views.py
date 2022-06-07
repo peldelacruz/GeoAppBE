@@ -31,23 +31,15 @@ def authenticate_user(request, token):
 @api_view(['GET'])
 #@permission_classes([IsAuthenticated])
 def ApiUserRegister(request, company, username):
-    if Company.objects.filter(company=company).exists():
-        try:
-            company_id = Company.objects.get(company=company)
-        except:
-            response = dict(company=company, username=username, message="The company is not registered", status=status.HTTP_404_NOT_FOUND, token=0)
-        else:
-            if User.objects.filter(username=username).exists():
-                try:
-                    usernames_id = User.objects.get(username=username)
-                except:
-                    response = dict(company=company, username=username, message="The user is not registered in the company", status=status.HTTP_404_NOT_FOUND, token=0)
-                else:
-                    if CustomUser.objects.filter(company_id=company_id, usernames_id=usernames_id).exists():
-                        try:
-                            response = dict(company=company, username=username, message="The user is registered in the company", status=status.HTTP_302_FOUND, token=1)
-                        except:
-                            response = dict(company=company, username=username, message="The user is not registered in the company", status=status.HTTP_404_NOT_FOUND, token=0)
-        finally:
-            return JsonResponse(response) 
+    try:
+        company_id = Company.objects.get(company=company)
+        usernames_id = User.objects.get(username=username)
+        if CustomUser.objects.filter(company_id=company_id, usernames_id=usernames_id).exists():
+            response = dict(company=company, username=username, message="The user is registered in the company", status=status.HTTP_302_FOUND, success=True, validate="user-company-correct")
+    except:
+        if not Company.objects.filter(company=company).exists():
+            response = dict(company=company, username=username, message="The company is not registered", status=status.HTTP_404_NOT_FOUND, success=False, validate="company-validation")
+        else:    
+            response = dict(company=company, username=username, message="The user is not registered", status=status.HTTP_404_NOT_FOUND, success=True, validate="user-company-correct")
+    return JsonResponse(response)
 
