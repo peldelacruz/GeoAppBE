@@ -40,6 +40,6 @@ def ApiUserRegister(request, company, username):
         if not Company.objects.filter(company=company).exists():
             response = dict(company=company, username=username, message="The company is not registered", status=status.HTTP_404_NOT_FOUND, success=False, validate="company-validation")
         else:    
-            response = dict(company=company, username=username, message="The user is not registered", status=status.HTTP_404_NOT_FOUND, success=True, validate="user-company-correct")
+            response = dict(company=company, username=username, message="The user is not registered", status=status.HTTP_404_NOT_FOUND, success=True, validate="user-validation")
     return JsonResponse(response)
 
