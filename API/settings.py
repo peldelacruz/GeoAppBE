@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'User'
 ]
 
+AUTH_USER_MODEL = 'User.CustomUser' # Add this
+
 REST_FRAMEWORK = {
      'DEFAULT_AUTHENTICATION_CLASSES': (
          'rest_framework_simplejwt.authentication.JWTAuthentication',
