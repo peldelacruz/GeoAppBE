@@ -9,6 +9,7 @@ on:
 jobs:
   build:
 
+    environment: dev
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -44,7 +45,8 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         source: "*"
-        target: "/home/wjesusaxl/test"
+        target: "${{ secrets.TARGET }}"
+        
 
   restart-service:
 
