@@ -32,6 +32,7 @@ jobs:
   
   deploy:
     
+    environment: dev
     needs: build
     runs-on: ubuntu-latest
     
@@ -46,10 +47,11 @@ jobs:
         port: ${{ secrets.PORT }}
         source: "*"
         target: "${{ secrets.TARGET }}"
-        
+
 
   restart-service:
 
+    environment: dev
     needs: deploy
     runs-on: ubuntu-latest
     name: restart apache service
