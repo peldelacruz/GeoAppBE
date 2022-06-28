@@ -23,5 +23,5 @@ def okay(request):
 urlpatterns = [
     path('favicon.ico', okay),
     path('admin/', admin.site.urls),
-    path('api/', include('User.api.urls'))
+    path('', include('User.api.urls'))
 ]
