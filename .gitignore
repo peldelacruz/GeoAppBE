@@ -135,7 +135,6 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
-
-API/__pycache__
-User/__pycache__
-User/api/__pycache__
+API/__pycache__/*
+User/__pycache__/*
+User/api/__pycache__/*
